@@ -1,6 +1,6 @@
 package crud;
 
-//Realizado Por: Jaime Alemany tot
+//Realizado Por: Jaime Alemany 
 
 import model.Ficha;
 
@@ -26,6 +26,14 @@ public class CrudTablero {
 		return this.col;
 	}
 	
+	public Ficha[][] getTabla() {
+		return tabla;
+	}
+
+	public void setTabla(Ficha[][] tabla) {
+		this.tabla = tabla;
+	}
+
 	public void setTabla(int fila, int columna, int estado) {
 		tabla[fila][columna].setEstado(estado);
 		
@@ -53,6 +61,19 @@ public class CrudTablero {
 	
 	public int comprobarEstado(int fila, int columna) { 
 		return tabla[fila][columna].getEstado();
+	}
+	
+	public int encontrarFilaLibre(int columna) {
+		int resul=-1;
+		boolean encontrado=false;
+		for(int i=filas-1;i>=0&&!encontrado;i--) {
+			if(tabla[i][columna].getEstado()==0) {
+				resul=i;
+				encontrado=true;
+			}
+		}
+		
+		return resul;
 	}
 
 }

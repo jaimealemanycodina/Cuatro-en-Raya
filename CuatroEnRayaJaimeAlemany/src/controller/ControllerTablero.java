@@ -14,9 +14,10 @@ public class ControllerTablero {
 		super();
 		this.tablero = tablero;
 		this.it=it;
-		this.posicionesGanadoras = new int[8];
+		this.posicionesGanadoras = new int[8]; // Contiene 4 fichas [Fila , Columna]*4
 	}
 
+	
 	public boolean comprobarVictoria(int jugador) { //Realizado por: Jaime Alemany
 		
 		int filas = tablero.getFilas();
@@ -27,14 +28,13 @@ public class ControllerTablero {
 				if (tablero.comprobarEstado(i, j) == jugador && tablero.comprobarEstado(i, j + 1) == jugador
 						&& tablero.comprobarEstado(i, j + 2) == jugador
 						&& tablero.comprobarEstado(i, j + 3) == jugador) {
-					
-					for(int k=0;k<=6;k+=2) { // Guarda las posiciones en la tabla de las fichas ganadoras, para así hacer una pequeña animación de victoria
-						posicionesGanadoras[k]=i;
+					// Guarda las posiciones en la tabla de las fichas ganadoras, para así hacer una pequeña animación de victoria
+					int contador=0;
+					for(int k=0;k<=6;k+=2) {
+						posicionesGanadoras[k]=i; // La fila siempre es la misma
+						posicionesGanadoras[k+1]=j+contador; // La columna cambia de 1 en 1
+						contador++;
 					}
-					posicionesGanadoras[1]=j;  // Me duele pensar en un bucle for,así que lo hago a cascaporra y ya
-					posicionesGanadoras[3]=j+1;
-					posicionesGanadoras[5]=j+2;
-					posicionesGanadoras[7]=j+3;
 					return true;
 				}
 			}
@@ -45,13 +45,13 @@ public class ControllerTablero {
 				if (tablero.comprobarEstado(j, i) == jugador && tablero.comprobarEstado(j + 1, i) == jugador
 						&& tablero.comprobarEstado(j + 2, i) == jugador
 						&& tablero.comprobarEstado(j + 3, i) == jugador) {
-					for(int k=1;k<=7;k+=2) { 
-						posicionesGanadoras[k]=i;
+					int contador=0;
+					
+					for(int k=0;k<=6;k+=2) { 
+						posicionesGanadoras[k]=j+contador; // La fila cambia de 1 en 1
+						posicionesGanadoras[k+1]=i; // La columna siempre es la misma
+						contador++;
 					}
-					posicionesGanadoras[0]=j;  
-					posicionesGanadoras[2]=j+1;
-					posicionesGanadoras[4]=j+2;
-					posicionesGanadoras[6]=j+3;
 					return true;
 				}
 			}
@@ -62,14 +62,13 @@ public class ControllerTablero {
 				if (tablero.comprobarEstado(i, j) == jugador && tablero.comprobarEstado(i + 1, j + 1) == jugador
 						&& tablero.comprobarEstado(i + 2, j + 2) == jugador
 						&& tablero.comprobarEstado(i + 3, j + 3) == jugador) {
-					posicionesGanadoras[0]=i;
-					posicionesGanadoras[1]=j;  
-					posicionesGanadoras[2]=i+1;
-					posicionesGanadoras[3]=j+1;
-					posicionesGanadoras[4]=i+2;
-					posicionesGanadoras[5]=j+2;
-					posicionesGanadoras[6]=i+3;
-					posicionesGanadoras[7]=j+3;
+					int contador=0;
+					
+					for(int k=0;k<=6;k+=2) {
+						posicionesGanadoras[k]=i+contador; // La fila cambia 
+						posicionesGanadoras[k+1]=j+contador; // La columna cambia también
+						contador++;
+					}
 					return true;
 				}
 			}
@@ -80,14 +79,12 @@ public class ControllerTablero {
 				if (tablero.comprobarEstado(i, j) == jugador && tablero.comprobarEstado(i - 1, j + 1) == jugador
 						&& tablero.comprobarEstado(i - 2, j + 2) == jugador
 						&& tablero.comprobarEstado(i - 3, j + 3) == jugador) {
-					posicionesGanadoras[0]=i;
-					posicionesGanadoras[1]=j;  
-					posicionesGanadoras[2]=i-1;
-					posicionesGanadoras[3]=j+1;
-					posicionesGanadoras[4]=i-2;
-					posicionesGanadoras[5]=j+2;
-					posicionesGanadoras[6]=i-3;
-					posicionesGanadoras[7]=j+3;
+					int contador=0;
+					for(int k=0;k<=6;k+=2) {
+						posicionesGanadoras[k]=i-contador; // La fila cambia en negativo
+						posicionesGanadoras[k+1]=j+contador; // La columna cambia también
+						contador++;
+					}
 					return true;
 				}
 			}

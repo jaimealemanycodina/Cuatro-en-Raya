@@ -14,7 +14,8 @@ public class ImprimirMensajes {
 				+ "|                                         |___/               |\n"
 				+ "+=============================================================+\n" + "");
 		System.out.println("\t\t➽ Pulsa 0. para cerrar el programa");
-		System.out.println("\t\t➽ Pulsa 1. para jugar");
+		System.out.println("\t\t➽ Pulsa 1. para jugar (2 jugadores)");
+		System.out.println("\t\t➽ Pulsa 2. para jugar (Jugador contra BOT)");
 	}
 	public void imprimirEmpate() {
 		System.out.println(
